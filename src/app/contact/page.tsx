@@ -1,57 +1,32 @@
 'use client';
 
-import { useState } from 'react';
-import { TextField, Button, Typography, Stack } from '@mui/material';
+import { Typography, IconButton, Box } from '@mui/material';
+import Image from 'next/image';
+import Link from 'next/link';
+import EmailIcon from '@mui/icons-material/Email';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert('送信されました！');
-  };
-
   return (
-    <div>
-      <Typography variant="h4" gutterBottom>Contact</Typography>
-      <form onSubmit={handleSubmit}>
-        <Stack spacing={2}>
-          <TextField
-            label="お名前"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            fullWidth
-            required
+     <Box>
+      <Typography variant="h5">Contact</Typography>
+
+      {/* Instagram PNGアイコン */}
+      <Link href="https://www.instagram.com/y__ma3_/" passHref target="_blank">
+        <IconButton>
+          <Image
+            src="/instagram.png"
+            alt="Instagram"
+            width={32}
+            height={32}
           />
-          <TextField
-            label="メールアドレス"
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            fullWidth
-            required
-          />
-          <TextField
-            label="お問い合わせ内容"
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            multiline
-            rows={4}
-            fullWidth
-            required
-          />
-          <Button type="submit" variant="contained" color="primary">
-            送信
-          </Button>
-        </Stack>
-      </form>
-    </div>
+        </IconButton>
+      </Link>
+
+      {/* メールアイコンとメールアドレス */}
+      <Box display="flex" alignItems="center" mt={2}>
+        <EmailIcon />
+        <Typography variant="body1" ml={1}>yuma33t@gmail.com</Typography>
+      </Box>
+    </Box>
   );
 }
